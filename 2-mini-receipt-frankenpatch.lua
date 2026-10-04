@@ -496,7 +496,7 @@ function quicklookwindow:init()
 		local function buildBookBox()
 			local wid = w_width * 0.7
 			local t = book_title .. " - " .. book_author
-			t = string.lower(t)		
+			t = string.capitalized(t)		
 			local t_widget = textboxx(
 								t, 
 								w_font.face.it, 
@@ -506,7 +506,7 @@ function quicklookwindow:init()
 								nil, 
 								"left"
 			)			
-			local pXofY = "page " .. book_page .. " of " .. book_total
+			local pXofY = "Page " .. book_page .. " of " .. book_total
 			local pXofY_widget = textboxx(
 									pXofY, 
 									w_font.face.reg, 
@@ -521,7 +521,7 @@ function quicklookwindow:init()
 			local tleft_text = timeLeft_book
 			if book_pageturn == book_pageturn_total then 
 				tleft_font = w_font.face.boldit
-				tleft_text = "fin."
+				tleft_text = "COMPLETE!"
 			end
 			if not statsEnabled then tleft_text = "--" end
 			local bookTLeft_widget = textboxx(
@@ -603,15 +603,15 @@ function quicklookwindow:init()
 		
 		local function buildChapterBox()
 			local wid = w_width * 0.7
-			chapter_title = string.lower(util.trim(chapter_title))
+			chapter_title = string.capitalized(util.trim(chapter_title))
 			if chapter_title == "" then chapter_title = "ツ" end
 			
 			local t = MR_SETT.ch_index == 1 and 
-						string.format("CHAPTER %i OF %i: \n%s", 
+						string.format("Chapter %i Of %i: \n%s", 
 										chapter_idx_curr, 
 										chapter_idx_total,
 										chapter_title) or
-										"CHAPTER: " .. chapter_title
+										"Chapter: " .. chapter_title
 						
 			local t_widget = textboxx(
 								t, 
@@ -623,7 +623,7 @@ function quicklookwindow:init()
 								"left"
 			)			
 			
-			local pXofY = "page " .. chapter_page .. " of " .. chapter_total
+			local pXofY = "Page " .. chapter_page .. " of " .. chapter_total
 			pXofY = T(_("%1 (%2%)"), pXofY, prog_pct_chapter)
 			local pXofY_widget = textboxx(
 									pXofY, 
@@ -670,12 +670,12 @@ function quicklookwindow:init()
 		
 		local function buildTimeReadTodayBox()
 			local wid = w_width * 0.3
-			local t =  T(_("today:\n%1\n%2"), pagesReadToday_str, timeReadToday_str) 
+			local t =  T(_("Today:\n%1\n%2"), pagesReadToday_str, timeReadToday_str) 
 			if not pagesReadToday or pagesReadToday == 0 then 
-				t = "today:\nnope. :("
+				t = "Today:\nnope. :("
 			end
 			if not statsEnabled then
-				t = "today:\n--"
+				t = "Today:\n--"
 			end
 			local t_widget = textboxx(
 								t, 
