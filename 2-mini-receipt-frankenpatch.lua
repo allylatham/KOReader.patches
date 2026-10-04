@@ -44,7 +44,7 @@ local bookCompleted = false
 
 local defaults = {
 		book_cmpl_wnd = 1,
-		serif = 1,
+		baskerville = 1,
 		brt_authors = 1,
 		ch_index = 0,
 		today_curr_book = 0,
@@ -126,14 +126,14 @@ local mini_menu = {
                 end,  
             },  			
 			{  
-                text = _("serif font"),  		
-				help_text = "CHECKED: all widgets use 'Noto Serif' font.\n\n".. 
-							"UNCHECKED: all widgets use 'Noto Sans' font.",
+                text = _("baskerville font"),  		
+				help_text = "CHECKED: all widgets use 'Baskerville' font.\n\n".. 
+							"UNCHECKED: all widgets use 'Bookerly' font.",
                 checked_func = function()  
-                    return MR_SETT.serif == 1  
+                    return MR_SETT.baskerville == 1  
                 end,  
                 callback = function()  
-					MR_SETT.serif = flipSett(MR_SETT.serif)
+					MR_SETT.baskerville = flipSett(MR_SETT.baskerville)
 					writeSettToDisk()		
                 end,  
             },  			
@@ -238,7 +238,7 @@ function quicklookwindow:init()
 
     -- FONT 
 	
-	local mainFontFace = MR_SETT.serif == 1 and "NotoSerif" or "NotoSans"
+	local mainFontFace = MR_SETT.baskerville == 1 and "Baskerville" or "Bookerly"
     local w_font = {
         face = {
             reg = mainFontFace .. "-Regular.ttf",
